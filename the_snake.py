@@ -16,13 +16,10 @@ RIGHT = (1, 0)
 
 # Цвет фона — чёрный:
 BOARD_BACKGROUND_COLOR = (0, 0, 0)
-
 # Цвет границы ячейки
 BORDER_COLOR = (93, 216, 228)
-
 # Цвет яблока
 APPLE_COLOR = (255, 0, 0)
-
 # Цвет змейки
 SNAKE_COLOR = (0, 255, 0)
 
@@ -31,10 +28,8 @@ SPEED = 20
 
 # Настройка игрового окна:
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
-
 # Заголовок окна игрового поля:
 pygame.display.set_caption('Змейка')
-
 # Настройка времени:
 clock = pygame.time.Clock()
 
