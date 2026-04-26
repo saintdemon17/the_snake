@@ -1,6 +1,6 @@
 from random import randint
-import pygame
 
+import pygame
 
 # Константы для размеров поля и сетки:
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
@@ -34,19 +34,11 @@ pygame.display.set_caption('Змейка')
 clock = pygame.time.Clock()
 
 
-
 class GameObject:
-    """Базовый класс, от которого наследуются все объекты.
-    Содержит общие атрибуты: позиция и цвет.
-    """
+    """Базовый класс, от которого наследуются все объекты."""
 
     def __init__(self, position=None, body_color=None):
-        """Конструктор базового игрового объекта.
-
-        Аргументы:
-            position (tuple): координаты.
-            body_color (tuple): цвет.
-        """
+        """Конструктор базового игрового объекта."""
         if position is None:
             self.position = (320, 240)
         else:
@@ -54,19 +46,12 @@ class GameObject:
         self.body_color = body_color
 
     def draw(self, surface):
-        """Абстрактный метод: для отрисовки объекта на экране.
-
-        Аргумент:
-            surface (pygame.Surface): поверхность, на которой рисуем.
-        """
+        """Абстрактный метод: для отрисовки объекта на экране."""
         pass
 
 
-
 class Apple(GameObject):
-    """Класс Apple. Наследуется от GameObject.
-    Появляется в случайном месте поля.
-    """
+    """Класс Apple. Наследуется от GameObject."""
 
     def __init__(self):
         super().__init__(position=None, body_color=APPLE_COLOR)
@@ -87,11 +72,8 @@ class Apple(GameObject):
         pygame.draw.rect(surface, BORDER_COLOR, rect, 1)
 
 
-
 class Snake(GameObject):
-    """Класс Snake. Наследуется от GameObject.
-    Представляет змейку в игре.
-    """
+    """Класс Snake. Наследуется от GameObject."""
 
     def __init__(self):
         super().__init__(position=(320, 240), body_color=SNAKE_COLOR)
@@ -137,16 +119,8 @@ class Snake(GameObject):
         self.next_direction = None
 
 
-
 def handle_keys(snake):
-    """Обработка нажатий клавиш для управления змейкой.
-
-    Аргумент:
-        snake (Snake): объект змейки.
-
-    Возвращает:
-        bool: True, если игра продолжается, False — если нужно выйти.
-    """
+    """Обработка нажатий клавиш для управления змейкой."""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             return False
@@ -162,7 +136,6 @@ def handle_keys(snake):
     return True
 
 
-
 def main():
     """Основная функция игры."""
     snake = Snake()
@@ -175,11 +148,9 @@ def main():
         snake.update_direction()
         snake.move()
 
-        # Проверка столкновения головы змейки с яблоком
         if snake.get_head_position() == apple.position:
             snake.length += 1
             apple.randomize_position()
-            # Убедимся, что яблоко не появляется на змейке
             while apple.position in snake.positions:
                 apple.randomize_position()
 
@@ -189,7 +160,6 @@ def main():
 
         pygame.display.update()
         clock.tick(SPEED)
-
 
 
 if __name__ == '__main__':
